@@ -68,31 +68,42 @@ class LinkedList:
         return temp
 
     def insert_at_index(self, index, value):
+        # check if index out of bounds
         if index < 0 or index > self.length:
             return False
+        # check if index is the very first
         elif index == 0:
             return self.prepend(value)
+        # check if index is the very last
         elif index == self.length:
             return self.append(value)
-        new_node = Node(value)
-        temp = self.head
+        # create new node with value
+        newNode = Node(value)
+        prev = self.head
+        # traverse from 0 to index - 1 because we want previous to current
         for currentIndex in range(index - 1):
-            temp = temp.next
-        new_node.next = temp.next
-        temp.next = new_node
+            prev = prev.next
+        # insert node between previous node and the next node
+        newNode.next = prev.next
+        prev.next = newNode
         self.length += 1
         return True
 
     def delete_at_index(self, index):
+        # check if index out of bounds
         if index < 0 or index >= self.length:
             return None
+        # check if index is the very first
         elif index == 0:
             return self.delfirst()
+        # check if index is the very last
         elif index == self.length - 1:
             return self.dellast()
         prev = self.head
+        # traverse from 0 to index - 1 because we want previous to current
         for currentIndex in range(index - 1):
             prev = prev.next
+        # delete temp node between temp's previous and temp's next
         temp = prev.next
         prev.next = temp.next
         temp.next = None
