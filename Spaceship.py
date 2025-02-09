@@ -5,5 +5,3 @@ class Spaceship:
 
     def __str__(self):
         return f"{self.name} has {self.fuel} fuel."
-
-# test commit
